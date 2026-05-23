@@ -229,7 +229,7 @@ func TestAgentAction_LegacyVerbsStillReachableUnderNewDispatch(t *testing.T) {
 	// rather than a routing-level 404 (which would have no JSON body).
 	w := httptest.NewRecorder()
 	srv.Handler().ServeHTTP(w, authedReq(t, http.MethodPost,
-		"/internal/agents/openclaw/connect", ""))
+		"/internal/agents/nonexistent-vendor-xyz/connect", ""))
 	assert.Contains(t, w.Body.String(), "agent not found",
 		"connect verb must reach its handler, not a routing 404; got %d body=%s", w.Code, w.Body.String())
 }
